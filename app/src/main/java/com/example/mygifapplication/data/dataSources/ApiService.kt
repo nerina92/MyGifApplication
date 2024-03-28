@@ -1,4 +1,4 @@
-package com.example.mygifapplication.data
+package com.example.mygifapplication.data.dataSources
 
 import com.example.mygifapplication.data.model.ResponseTrendingGifs
 import retrofit2.Retrofit
