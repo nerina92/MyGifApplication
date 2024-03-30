@@ -4,8 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.mygifapplication.data.repository.ApiRepositoryImpl
-import com.example.mygifapplication.data.model.ResponseTrendingGifs
+import com.example.mygifapplication.data.repository.GifRepositoryImpl
+import com.example.mygifapplication.data.model.api.ResponseTrendingGifs
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -15,7 +15,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MainViewModel @Inject constructor(
-    private val apiRepository: ApiRepositoryImpl
+    private val apiRepository: GifRepositoryImpl
 ): ViewModel() {
 
     //val apiRepository = ApiRepositoryImpl()

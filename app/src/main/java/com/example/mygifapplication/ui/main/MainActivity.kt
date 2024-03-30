@@ -3,7 +3,6 @@ package com.example.mygifapplication.ui.main
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.activity.viewModels
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -25,7 +24,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
-import com.example.mygifapplication.data.model.ResponseTrendingGifs
 import com.example.mygifapplication.ui.theme.MyGifApplicationTheme
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -87,7 +85,7 @@ fun MainScreen(
             content={
                 gifs?.data?.let {
                     items(it.take(25)){ gif->
-                        MediaItem(gif.images.original.url, gif.title)
+                        MediaItem(gif.url, gif.title)
                     }
                 }
         }

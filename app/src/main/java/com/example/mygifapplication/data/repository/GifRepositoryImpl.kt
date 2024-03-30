@@ -1,12 +1,12 @@
 package com.example.mygifapplication.data.repository
 
-import com.example.mygifapplication.data.model.ResponseTrendingGifs
+import com.example.mygifapplication.data.model.api.ResponseTrendingGifs
 import com.example.mygifapplication.data.dataSources.ApiService
 import javax.inject.Inject
 
-class ApiRepositoryImpl @Inject constructor(
+class GifRepositoryImpl @Inject constructor(
     private val service: ApiService
-) : ApiRepository {
+) : GifRepository {
     //val service = ApiServiceFactory.makeRetrofitService()
     override suspend fun getTrendingGifs(apiKey: String): ResponseTrendingGifs {
         return service.getTrendingGifs(apiKey)

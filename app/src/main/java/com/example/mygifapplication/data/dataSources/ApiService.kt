@@ -1,6 +1,6 @@
 package com.example.mygifapplication.data.dataSources
 
-import com.example.mygifapplication.data.model.ResponseTrendingGifs
+import com.example.mygifapplication.data.model.api.ResponseTrendingGifs
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
@@ -12,13 +12,13 @@ interface ApiService {
     @GET("/v1/gifs/trending")
     suspend fun getTrendingGifs(
         @Query("api_key") apiKey: String,
-    ):ResponseTrendingGifs
+    ): ResponseTrendingGifs
 
     @GET("/v1/gifs/search")
     suspend fun searchGifs(
         @Query("api_key") apiKey: String,
         @Query("q") search: String,
-    ):ResponseTrendingGifs
+    ): ResponseTrendingGifs
 
 
 }

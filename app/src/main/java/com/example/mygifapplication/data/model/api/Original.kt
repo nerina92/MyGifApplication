@@ -1,4 +1,4 @@
-package com.example.mygifapplication.data.model
+package com.example.mygifapplication.data.model.api
 
 data class Original(
     val frames: String,

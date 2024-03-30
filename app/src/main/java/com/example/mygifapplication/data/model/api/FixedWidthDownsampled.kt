@@ -1,9 +1,7 @@
-package com.example.mygifapplication.data.model
+package com.example.mygifapplication.data.model.api
 
-data class FixedHeightSmall(
+data class FixedWidthDownsampled(
     val height: String,
-    val mp4: String,
-    val mp4_size: String,
     val size: String,
     val url: String,
     val webp: String,

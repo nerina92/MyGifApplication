@@ -82,6 +82,9 @@ dependencies {
     //kapt ("com.google.dagger:hilt-compiler:2.44")
 // Compose Navigation
     implementation ("androidx.navigation:navigation-compose:2.7.7")
+    //room
+    implementation("androidx.room:room-ktx:2.6.1")
+    kapt("androidx.room:room-compiler:2.6.1")
 
 
     testImplementation("junit:junit:4.13.2")
