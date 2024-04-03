@@ -51,6 +51,7 @@ android {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
     }
+
 }
 
 dependencies {
@@ -74,12 +75,14 @@ dependencies {
     implementation("com.squareup.retrofit2:converter-gson:2.10.0")
     //coil
     implementation("io.coil-kt:coil-compose:2.6.0")
-    //dager
+
+    //dager - hilt
     implementation("com.google.dagger:hilt-android:2.48")
     kapt("com.google.dagger:hilt-android-compiler:2.48")
-    // Hilt
     implementation ("androidx.hilt:hilt-navigation-compose:1.2.0")
-    //kapt ("com.google.dagger:hilt-compiler:2.44")
+    //kapt ("com.google.dagger:hilt-compiler:2.48")
+    //kapt ("com.google.dagger:dagger-compiler:2.11")
+
 // Compose Navigation
     implementation ("androidx.navigation:navigation-compose:2.7.7")
     //room
@@ -98,4 +101,5 @@ dependencies {
 // Allow references to generated code
 kapt {
     correctErrorTypes = true
+    generateStubs = true
 }
