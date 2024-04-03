@@ -3,17 +3,22 @@ package com.example.mygifapplication.ui.main
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.material3.Button
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -26,7 +31,17 @@ import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.example.mygifapplication.ui.theme.MyGifApplicationTheme
 import androidx.compose.runtime.livedata.observeAsState
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.painter.Painter
+import androidx.compose.ui.res.painterResource
 import androidx.hilt.navigation.compose.hiltViewModel
+import coil.compose.AsyncImagePainter
+import coil.compose.SubcomposeAsyncImage
+import coil.compose.SubcomposeAsyncImageContent
+import com.example.mygifapplication.R
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -81,15 +96,14 @@ fun MainScreen(
         )
         Text(text = title?:"Trending Gifs")
         LazyVerticalGrid(
-            columns = GridCells.Fixed(2),
-            content={
-                gifs?.data?.let {
-                    items(it.take(25)){ gif->
-                        MediaItem(gif.url, gif.title)
-                    }
+            columns = GridCells.Fixed(2)
+        ) {
+            if (gifs?.isNotEmpty() == true) {
+                items(gifs!!.take(25)) { gif ->
+                    MediaItem(gif.url, gif.title)
                 }
+            }
         }
-        )
     }
 
 }
@@ -123,6 +137,7 @@ fun SearchBar(
     }
 }
 
+/*
 @Composable
 fun MediaItem(url: String, desc:String) {
     Column(horizontalAlignment = Alignment.CenterHorizontally) {
@@ -132,5 +147,33 @@ fun MediaItem(url: String, desc:String) {
         }
     }
 }
+*/
 
 
+@Composable
+fun MediaItem(url: String, desc: String) {
+    SubcomposeAsyncImage(
+        model = url,
+        contentDescription = desc
+    ) {
+        val state = painter.state
+        println("url media item:  $url")
+        println("State en media item:  $state")
+        if (state is AsyncImagePainter.State.Loading){
+            Box(modifier = Modifier.fillMaxWidth().fillMaxHeight(), contentAlignment = Alignment.Center) {
+                CircularProgressIndicator()
+            }
+        } else {
+            if ( state is AsyncImagePainter.State.Error) {
+                Column {
+                    val painter: Painter = painterResource(id = R.drawable.error_image)
+                    Image(painter = painter, contentDescription = null)
+                    Text(text = desc)
+                }
+                
+            }else{
+                SubcomposeAsyncImageContent()
+            }
+        }
+    }
+}

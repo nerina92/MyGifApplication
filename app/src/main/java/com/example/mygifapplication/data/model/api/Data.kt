@@ -21,5 +21,6 @@ data class Data(
     val type: String,
     val url: String,
     val user: User,
-    val username: String
+    val username: String,
+    val alt_text: String?
 )
